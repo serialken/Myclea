@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <!-- User providers -->
+        <service
+                id="app.user_provider"
+                class="AppBundle\Security\User\UserProvider"
+                autowire="true"
+        />
+
+        <!-- Repositories -->
+        <!--<service-->
+                <!--id="app.repository.course"-->
+                <!--class="AppBundle\Repository\CourseRepository"-->
+        <!--&gt;-->
+            <!--<argument type="service" id="database_connection"/>-->
+            <!--<argument>%courses_cid%</argument>-->
+        <!--</service>-->
+        <!--<service-->
+        <!--id="app.repository.recommended_activities"-->
+        <!--class="AppBundle\Repository\RecommendedActivitiesRepository"-->
+        <!-->-->
+        <!--<argument>%recommended_activities%</argument>-->
+        <!--</service>-->
+        <!--<service-->
+                <!--id="app.repository.study_class"-->
+                <!--class="AppBundle\Repository\StudyClassRepository"-->
+        <!--&gt;-->
+            <!--<argument type="service" id="database_connection"/>-->
+            <!--<argument>%courses_cid%</argument>-->
+        <!--</service>-->
+
+        <!-- CAS -->
+        <service
+                id="app.cas_server"
+                class="AppBundle\Cas\Server"
+        >
+            <argument>%cas_version%</argument>
+            <argument>%cas_host%</argument>
+            <argument>%cas_port%</argument>
+            <argument>%cas_context%</argument>
+        </service>
+
+        <!-- Authenticators -->
+        <service
+                id="app.cas_authenticator"
+                class="AppBundle\Security\CasAuthenticator"
+                autowire="true"
+        />
+
+        <!-- Listeners -->
+        <service id="app.exception_subscriber" class="AppBundle\EventSubscriber\ExceptionSubscriber">
+            <argument type="service" id="security.http_utils"/>
+            <argument type="service" id="logger" on-invalid="null"/>
+            <tag name="kernel.event_subscriber"/>
+            <tag name="monolog.logger" channel="request"/>
+        </service>
+
+        <!-- Log processor -->
+        <service
+                id="monolog.processor.psr_log_message_processor"
+                class="Monolog\Processor\PsrLogMessageProcessor"
+        >
+            <tag name="monolog.processor"/>
+        </service>
+
+        <!-- Monolog formatters -->
+        <service
+                id="monolog.formatter.html"
+                class="Monolog\Formatter\HtmlFormatter"
+        />
+
+        <!-- Monolog handlers -->
+        <service
+                id="app.monolog.handler.other_exception.mail_message_factory"
+                class="Symfony\Bundle\MonologBundle\SwiftMailer\MessageFactory"
+                lazy="true"
+                public="false"
+        >
+            <argument type="service" id="mailer"/>
+            <argument>%from_email%</argument>
+            <argument>%other_exception_to_emails%</argument>
+            <argument>An Error Occurred! %%message%%</argument>
+            <argument>text/html</argument>
+        </service>
+        <service
+                id="app.monolog.handler.other_exception"
+                class="Bridge\Monolog\Handler\OtherExceptionHandler"
+        >
+            <argument type="service" id="mailer"/>
+            <argument type="collection">
+                <argument type="service" id="app.monolog.handler.other_exception.mail_message_factory"/>
+                <argument>createMessage</argument>
+            </argument>
+            <argument type="constant">Monolog\Logger::DEBUG</argument>
+            <argument type="constant">true</argument>
+            <call method="setFormatter">
+                <argument type="service" id="monolog.formatter.html"/>
+            </call>
+            <call method="setTransport">
+                <argument type="service" id="swiftmailer.mailer.default.transport.real"/>
+            </call>
+            <tag name="kernel.event_listener" event="kernel.terminate" method="onKernelTerminate"/>
+            <tag name="kernel.event_listener" event="console.terminate" method="onCliTerminate"/>
+        </service>
+
+        <service
+                id="app.monolog.handler.database_exception.mail_message_factory"
+                class="Symfony\Bundle\MonologBundle\SwiftMailer\MessageFactory"
+                lazy="true"
+                public="false"
+        >
+            <argument type="service" id="mailer"/>
+            <argument>%from_email%</argument>
+            <argument>%database_exception_to_emails%</argument>
+            <argument>An Error Occurred! %%message%%</argument>
+            <argument>text/html</argument>
+        </service>
+        <service
+                id="app.monolog.handler.database_exception"
+                class="Bridge\Monolog\Handler\DatabaseExceptionHandler"
+        >
+            <argument type="service" id="mailer"/>
+            <argument type="collection">
+                <argument type="service" id="app.monolog.handler.database_exception.mail_message_factory"/>
+                <argument>createMessage</argument>
+            </argument>
+            <argument type="constant">Monolog\Logger::DEBUG</argument>
+            <argument type="constant">true</argument>
+            <call method="setFormatter">
+                <argument type="service" id="monolog.formatter.html"/>
+            </call>
+            <call method="setTransport">
+                <argument type="service" id="swiftmailer.mailer.default.transport.real"/>
+            </call>
+            <tag name="kernel.event_listener" event="kernel.terminate" method="onKernelTerminate"/>
+            <tag name="kernel.event_listener" event="console.terminate" method="onCliTerminate"/>
+        </service>
+    </services>
+</container>

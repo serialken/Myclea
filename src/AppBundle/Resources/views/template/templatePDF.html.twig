@@ -1,0 +1,31 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    {#<link rel="stylesheet" href="{{ base_dir ~ asset('bundles/app/css/pdf.css') }}" />#}
+    <link rel="stylesheet" href="{{ base_dir ~ asset('bundles/app/css/pdf.css') }}" />
+
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+
+        $("document").ready(function(){
+            var isChecked1 = {{ isCheckbox1Checked | json_encode | raw}};
+            var isChecked2 = {{ isCheckbox2Checked | json_encode | raw}};
+            if(isChecked1 == 'true'){
+                $('#cbox1').prop("checked","checked");
+            };
+
+            if(isChecked2 == 'true'){
+                $('#cbox3').prop("checked","checked");
+            };
+        });
+    </script>
+{% endblock %}

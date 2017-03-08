@@ -1,0 +1,7 @@
+routingApp:
+    resource: '@AppBundle/Resources/config/routing/routingApp.yml'
+    prefix: /
+
+routingData:
+    resource: '@AppBundle/Resources/config/routing/routingData.yml'
+    prefix: /

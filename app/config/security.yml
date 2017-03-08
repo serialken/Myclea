@@ -1,0 +1,30 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        dbal:
+          id: app.user_provider
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            stateless: true
+            anonymous: ~
+#            guard:
+#                authenticators:
+#                    - app.cas_authenticator
+#                    - lexik_jwt_authentication.jwt_token_authenticator
+#                entry_point: app.cas_authenticator
+#
+#    access_control:
+#        - { path: ^/cleacsl, roles: IS_AUTHENTICATED_FULLY }
+#        - { path: ^/GroupsByTeacher, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/RessourcesByGroup, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/studentsByGroupAndRessource, roles: IS_AUTHENTICATED_ANONYMOUSLY }

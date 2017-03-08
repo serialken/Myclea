@@ -1,0 +1,24 @@
+#Access CLEA-CSL
+app_searchConsole:
+    path:     /cleacsl
+    defaults: { _controller: AppBundle:App:getCLEACSL}
+
+app_searchPDF:
+    path:     /Search/PDF/{studentId}
+    defaults: { _controller: AppBundle:App:getPDF}
+
+app_searchPDF1:
+    path:     /Search/PDF1/{studentId}/{isCheckbox1Checked}/{isCheckbox2Checked}/{ressourceId}
+    defaults: { _controller: AppBundle:App:getPDFResEval}
+
+app_searchPDF2:
+    path:     /Search/PDF2/{studentId}/{isCheckbox1Checked}/{isCheckbox2Checked}/{ressourceId}
+    defaults: { _controller: AppBundle:App:getPDFMatriceOf}
+
+app_searchPDF3:
+    path:     /Search/PDF3/{studentId}/{isCheckbox1Checked}/{isCheckbox2Checked}/{ressourceId}
+    defaults: { _controller: AppBundle:App:getPDFMatriceCandi}
+
+app_searchPDF4:
+    path:     /Search/PDF4/{studentId}/{isCheckbox1Checked}/{isCheckbox2Checked}/{ressourceId}
+    defaults: { _controller: AppBundle:App:getPDFCombined}

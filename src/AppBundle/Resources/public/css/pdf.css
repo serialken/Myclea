@@ -1,0 +1,75 @@
+.arial-10-5{
+    font-family:Arial;
+    font-size:10.5px;
+}
+.arial-10{
+    font-family:Arial;
+    font-size:10px;
+}
+.arial-14{
+    font-family:Arial;
+    font-size:14px;
+}
+.border{
+    border-style: solid;
+    margin-top:5%;
+}
+.underlineBold{
+    text-decoration: underline;
+    font-weight: bold;
+}
+.grey{
+    background-color: #D8E3DD;
+}
+.bold{
+    font-weight: bold;
+}
+.center{
+    text-align: center;
+}
+.normal{
+    font-weight:normal;
+}
+.backBlue{
+    background-color: #0064AD;
+}
+.blue{
+    color:#228ED8;
+}
+.red{
+    color:#FF6E6E;
+}
+.white{
+    color:white;
+}
+
+.bottomBorder
+{
+    top: 0px;
+    margin:0px;
+    padding: 0px 2px 2px 3px;
+    border-width: 2px;
+    border-bottom-width:2px;
+    border-bottom-color: #228ED8;
+    border-bottom-style: solid;
+    width: 100%;
+}
+.caseHeight
+{
+    height:40px;
+}
+.imageCrossPDF1{
+    height:30px;
+    width: 30px;
+}
+.imageCrossPDF2{
+    height:30px;
+    width: 30px;
+}
+table, tr, td, th, tbody, thead, tfoot {
+    page-break-inside: avoid !important;
+}
+
+div.page {
+    page-break-before: always !important;
+}

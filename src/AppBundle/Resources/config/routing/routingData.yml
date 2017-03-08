@@ -1,0 +1,11 @@
+data_groupsByTeacher:
+    path:     /GroupsByTeacher
+    defaults: { _controller: AppBundle:Data:getGroupsByTeacher }
+
+data_ressourcesByGroup:
+    path:     /RessourcesByGroup
+    defaults: { _controller: AppBundle:Data:getRessourcesByGroup }
+
+data_studentsByGroupAndRessource:
+    path:     /studentsByGroupAndRessource
+    defaults: { _controller: AppBundle:Data:getStudentsByGroupAndRessource }

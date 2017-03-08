@@ -1,0 +1,213 @@
+@font-face {
+	font-family: "DTPFonts";
+	src: url('../fonts/dtp_7_0_icons.eot');
+	src: url('../fonts/dtp_7_0_icons.eot') format('eot'),
+	url('../fonts/dtp_7_0_icons.woff') format('woff'),
+	url('../fonts/dtp_7_0_icons.ttf') format('truetype'),
+	url('../fonts/dtp_7_0_icons.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="icon-"]:before, [class*=" icon-"]:before {
+	font-family: DTPFonts;
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+	text-decoration: inherit;
+	font-size: 32px;
+}
+[class^="icon-"].disabled {
+	cursor: default;
+}
+.icon-add-comment:before			{ content: "\e02a"; }
+.icon-note:before					{ content: "\e02b"; }
+.icon-alert:before					{ content: "\e022"; }
+.icon-arrow-forward:before			{ content: "\0021"; }
+.icon-arrow-backward:before			{ content: "\0021"; }
+.icon-select-file-upload:before		{ content: "\e02c"; }
+.icon-browse:before					{ content: "\e02c"; }
+.icon-back:before					{ content: "\0021"; }
+.icon-circle-minus:before			{ content: "\e018"; }
+.icon-circle-plus:before			{ content: "\e015"; }
+.icon-circle-v:before				{ content: "\e012"; margin-right: -12px;}
+.icon-class-monitor:before			{ content: "\0025"; }
+.icon-conducted-lesson:before		{ content: "\e044"; }
+.icon-monitor:before				{ content: "\e609"; }
+.icon-reset:before					{ content: "\e619"; }
+.icon-followMe:before				{ content: "\e618"; }
+.icon-stopLine:before				{ content: "\e616"; }
+.icon-eyes-on-teacher:before		{ content: "\e024"; }
+.icon-flag:before					{ content: "\f097"; }
+.icon-gallery:before				{ content: "\e615"; }
+.icon-lesson:before					{ content: "\e000"; }
+.icon-library:before				{ content: "\e025"; }
+.icon-placeholder:before			{ content: " "; }
+.icon-menu:before					{ content: "\e026"; }
+.icon-minus-sign:before				{ content: "\0017" }
+.icon-modality-couple:before		{ content: "\25"; }
+.icon-modality-frontal:before		{ content: "\40"; }
+.icon-modality-groups:before		{ content: "\24"; }
+.icon-modality-indivdual:before		{ content: "\23"; }
+.icon-next:before					{ content: "\0021"; }
+.icon-prev:before					{ content: "\0021"; }
+.icon-forward:before				{ content: "\f0da"; }
+.icon-backwards:before				{ content: "\f0d9"; }
+.icon-arrow:before					{ content: "\0021"; }
+.icon-other:before					{ content: "\e044"; }
+.icon-overview:before				{ content: "\e007"; }
+.icon-plus-sign:before				{ content: "\e016"; }
+.icon-trash:before					{ content: "\e017"; }
+.icon-properties:before				{ content: "\e044"; }
+.icon-quick-view:before				{ content: "\e01c"; }
+.icon-reports:before				{ content: "\e617"; }
+.icon-send:before					{ content: "\e044"; }
+.icon-sequence:before				{ content: "\e000"; }
+.icon-settings:before				{ content: "\e044"; }
+.icon-students:before				{ content: "\25"; }
+.icon-student:before				{ content: "\23"; }
+.icon-teacher:before				{ content: "\e906";}
+.icon-student-to-student:before		{ content: "\e907";}
+.icon-student-nogender:before		{ content: "\e601"; }
+.icon-swipe-view:before				{ content: "\e044"; }
+.icon-tilepage:before				{ content: "\e044"; }
+.icon-view:before					{ content: "\24"; }
+.icon-refresh:before				{ content: "\e019"; }
+.icon-home:before					{ content: "\e00b"; }
+.icon-attachment:before				{ content: "\e032"; }
+.icon-go:before						{ content: "\0021"; }
+.icon-table-of-content:before		{ content: "\e01f"; }
+.icon-backscreen:before				{ content: "\e01f"; }
+.icon-ok:before						{ content: "\e012"; margin-right: -12px; }
+.icon-list-huge:before				{ content: "\e01c"; }
+.icon-clock:before					{ content: "\e031"; }
+.icon-clock-l:before				{ content: "\e635"; }
+.icon-boy:before					{ content: "\23"; }
+.icon-girl:before					{ content: "\e021"; }
+.icon-boy-large:before				{ content: "\e020"; }
+.icon-girl-large:before				{ content: "\e021"; }
+.icon-download-course:before		{ content: "\e038"; }
+.icon-play:before					{ content: "\f04b"; }
+.icon-play-small:before				{ content: "\f04b"; }
+.icon-close:before					{ content: "\e010"; }
+.icon-close-small:before			{ content: "\e010"; }
+.icon-search-clean:before			{ content: "\e010"; }
+.icon-clean:before					{ content: "\e010"; }
+.icon-edit-note:before				{ content: "\e039"; }
+.icon-delete-note:before			{ content: "\f014"; }
+.icon-replay:before					{ content: "\e914";}
+.icon-delete-garbage:before			{ content: "\f014"; }
+.icon-toc:before					{ content: "\e02d"; }
+.icon-stop:before					{ content: "\e02e"; }
+.icon-pause:before					{ content: "\e02f"; }
+.icon-baloon:before					{ content: "\e030"; }
+.icon-submit-assessment:before		{ content: "\e01A"; }
+.icon-notifications:before			{ content: "\e60c"; }
+.icon-more:before					{ content: "\e026"; }
+.icon-edit:before					{ content: "\e039"; }
+.icon-comment:before				{ content: "\e036"; }
+.icon-backspace:before				{ content: "\e604"; }
+.icon-file:before					{ content: "\e03c"; }
+.icon-globe:before					{ content: "\e638"; }
+.icon-clock2:before					{ content: "\e637"; }
+.icon-submit:before					{ content: "\e01A"; }
+.icon-id:before						{ content: "\e005"; }
+.icon-favorite:before				{ content: "\0024"; }
+.icon-open:before					{ content: "\e600"; }
+.icon-Down1:before					{ content: "\f0dc"; }
+.icon-previous:before				{ content: "\f0d9"; }
+.icon-next1:before					{ content: "\f0da"; }
+.icon-mute:before					{ content: "\e605"; }
+.icon-volume:before					{ content: "\e606"; }
+.icon-search-o:before				{ content: "\e607"; }
+.icon-download-arrow:before			{ content: "\e608"; }
+.icon-help:before					{ content: "\e61b"; }
+.icon-threshold:before				{ content: "\e60e"; }
+.icon-anonymous:before				{ content: "\e60a"; }
+.icon-lock:before					{ content: "\f023"; }
+.icon-public:before					{ content: "\e60f"; }
+.icon-link:before					{ content: "\e60b"; }
+.icon-smiley:before					{ content: "\e610"; }
+.icon-private:before				{ content: "\f023"; }
+.icon-private:before				{ content: "\f023"; }
+.icon-last-location:before			{ content: "\e611"; }
+.icon-send-to-gallery:before		{ content: "\e61a"; }
+.icon-info-small:before				{ content: "\e61e"; }
+.icon-close-big:before				{ content: "\e802"; }
+.icon-add-content:before			{ content: "\e801"; }
+.icon-save:before					{ content: "\e800"; }
+.icon-share:before					{ content: "\e902"; }
+.icon-Arrow_down:before				{ content: "\e01d"; }
+.icon-Arrow_up:before				{ content: "\e01e"; }
+.icon-full_screen:before			{ content: "\e00f"; }
+.icon-hide:before					{ content: "\e901"; }
+.icon-reorder:before				{ content: "\e904"; }
+.icon-book:before					{ content: "\e903"; }
+.icon-drag_left_nav:before			{ content: "\e905"; }
+.icon-placement-assessment:before	{ content: "\e908"; }
+.icon-alert,
+.icon-class-monitor,
+.icon-eyes-on-teacher,
+.icon-flag,
+.icon-menu,
+.icon-properties,
+.icon-quick-view,
+.icon-send,
+.icon-students {
+	width: 22px;
+}
+.standards-window .icon-more {
+	margin-top: 5px;
+	width: 100%;
+}
+.icon-back,.icon-prev {
+	-webkit-transform:scaleX(-1);
+	-moz-transform:scaleX(-1);
+	-ms-transform:scaleX(-1);
+	-o-transform:scaleX(-1);
+	transform:scaleX(-1);
+}
+.icon-arrow {
+	-webkit-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+.icon-arrow.up {
+	-webkit-transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	-moz-transform: rotate(270deg);
+	-o-transform: rotate(270deg);
+	transform: rotate(270deg);
+}
+.icon-arrow-backward {
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+.rtl .icon-back:before,
+.rtl .icon-arrow-forward:before  {
+	-webkit-transform: rotateY(180deg);
+	-ms-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	-o-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+.rtl .icon-arrow-backward {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+ .rtl .header-title .icon-backwards:before,
+ .rtl .calendar .icon-backwards:before,
+ .rtl .calendar .icon-forward:before {
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}

@@ -1,0 +1,76 @@
+{% extends "AppBundle:template:templatePDF.html.twig" %}
+
+{% block body %}
+
+    {%  set color = arrayColorDomain %}
+    <div class="page">
+        <div class="content ">
+
+            <div class="  grey ">
+                <img src="{{  base_dir ~ asset('bundles/app/img/pdf1title.png') }}" alt="PDF Title">
+            </div>
+
+            <div class=" bottomBorder" style="margin-top:3%;">
+                <h1 class="bold center blue">ÉVALUATION PRÉALABLE DES ACQUIS</h1>
+            </div>
+            <div style="margin-top:0.5%;">
+                {% if date > 0%}
+                    <p class="bold col-xs-offset-5 red">réalisée le {{ date | date('d/m/Y') }}</p>
+                {% else %}
+                    <p class="bold col-xs-offset-5 red">réalisée le </p>
+                {% endif %}
+            </div>
+            <div style="margin-top:1%;">
+
+                <div class="col-xs-6" style="margin-left: -2%">
+                    <div class="col-xs-11 grey">
+                        <div class="underlineBold arial-18" >Individu</div><br/>
+                        <p class="arial-18">
+                            Nom d'usage: {{ studentInfos[0].lastName }}<br/>
+                            Nom de naissance:<br/>
+                            Prénom: {{ studentInfos[0].firstName }}<br/><br/>
+                            Numéro de dossier:
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-xs-6">
+                    <div class="col-xs-11 grey">
+                        <div class="underlineBold arial-18">Evaluateur</div><br/>
+                        <p class="arial-18">
+                            Nom: <br/>
+                            Prénom:<br/>
+                            Organisme de rattachement:<br/>
+                            Téléphone:<br/>
+                            Mail:
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <table class="table-bordered">
+                <thead>
+                <tr height="30">
+                    <th width="53%" class="center col-xs-8">DOMAINE</th>
+                    <th width="5%" class="center col-xs-2">Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% set cptD = 0 %}
+                {% for key,inter in arrayDomainSubDomain %}
+                    {% for domain,subdomains in inter %}
+                        {% set cptD = cptD + 1 %}
+                        <tr height="30">
+                            <td class="white" style="height:60px;{{'background-color:' ~ color[cptD-1]}}; {% if cptD == 7 %}color:#000000;{% endif %}">{{cptD ~'. ' ~ domain | upper }}</td>
+                            <td class="center">{{ subdomains.succeedDomain.score | number_format(2, ',', '') }}%</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+

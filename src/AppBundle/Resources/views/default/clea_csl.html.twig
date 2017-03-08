@@ -1,0 +1,187 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/media.css') }}" />
+
+{% endblock %}
+
+{% block body %}
+    {# Set Table Head Parameter, warning: this table need to be set in js code#}
+    {% set tabletitle = ['Prénom/Nom','Préalable','Finale','Résultat évaluation','Matrice OF','Matrice Candidat','Tout'] %}
+    {% set help = "En cochant l'une de ces cases vous pré-remplissez les cases correspondantes dans tous les rapports que vous générez" %}
+    <div class="console">
+
+        <!-- TOOLBAR SECTION-->
+
+        <div id="course-toolbar" class="non-printable" >
+            <div class="navbar course-presenter-toolbar top">
+                <ul class="nav left_section">
+                    <li class="move-button icon-open glyphicon glyphicon-menu-hamburger" button-action="move-button" onclick="translationX()"><div class="qa_testing"></div></li>
+                    <li class="title">
+                        <span class="title">Rapports des tests</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="course-nav" class="col-md-3 col-sm-6 course-nav reports-nav top">
+
+            <!-- GROUPE (STUDY CLASS) SECTION-->
+            <div class="col-md-12">
+            <section class="reports-menu-section studyclasses">
+                <p id="message" style="color:#ff0000;text-align:center;"></p>
+                <div class="menu-title">Groupe:</div>
+                <div class="dropdown classes-menu t2k-dropdown dropdown-select">
+
+                    <div class="dropdown-toggle needsclick" data-toggle="dropdown">
+                        <p id="study-class" class="studyclass-select classes-toggle dropdown-toggle t2k-select-title ellipsis select-title" href="#" >
+                            {{ groupDefaultSelection }}
+                        </p>
+                        <div class="dropdown-arrow ">
+                            <div class="caret"></div>
+                        </div>
+                    </div>
+                    <ul class="groups select-classes-dropdown dropdown-menu pull-right dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    </ul>
+                </div>
+            </section>
+            </div>
+
+            <!-- RESSOURCE (COURSE) SECTION-->
+            <div class="col-md-12">
+            <section class="reports-courses reports-menu-section">
+                <div class="menu-title">Ressource :</div>
+                <div class=" dropdown dropdown-select t2k-dropdown courses-menu ressources-menu disabled">
+                    <div class="dropdown-toggle needsclick" data-toggle="dropdown">
+                        <p id="ressource" class="courses-select courses-toggle ellipsis dropdown-toggle t2k-select-title" href="#">
+                            {{ ressourceDefaultSelection }}
+                        </p>
+                        <div class="dropdown-arrow ">
+                            <div class="caret"></div>
+                        </div>
+                    </div>
+                    <ul class="ressources select-courses-dropdown dropdown-menu pull-right dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    </ul>
+                </div>
+            </section>
+            </div>
+
+            <!-- STAGIAIRE (STUDENT) SECTION -->
+
+            <div class="col-md-12">
+            <section class="reports-students reports-menu-section ">
+                <div class="menu-title">Stagiaire(s): </div>
+                <label class="normal">Tous : <input id="checkall" type="checkbox" class="myCheckboxAll" value="all"/></label><br />
+                <div class=" dropdown t2k-dropdown dropdown-select students-menu disabled">
+                    <div class="dropdown-toggle needsclick" data-toggle="dropdown">
+                        <p id="student" class="students-select t2k-select-title students-toggle ellipsis dropdown-toggle" href="#">
+                            {{ stagiaireDefaultSelection }}
+                        </p>
+                        <div id="arrow" class="dropdown-arrow ">
+                            <div class="caret"></div>
+                        </div>
+                    </div>
+                    <ul id='students' class="students select-students-dropdown dropdown-menu pull-right dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    </ul>
+                </div>
+                <!-- BUTTON SUBMIT -->
+                <div id='btn-submit' class="col-md-4 btn button-colored-primary open-reports disabled" onclick="getTable()">Appliquer</div>
+            </section>
+            </div>
+
+
+        </div>
+
+        <div id="reports-content" class=" col-md-9 col-md-offset-3 col-sm-6 col-sm-offset-6  reports-content top" style="overflow:scroll;margin-top:-3%;">
+            <div id="content-panel">
+                <div id="empty-panel">
+                    <div class="empty-panel-image"></div>
+                    <div class="empty-panel-text">Sélectionnez des résultats à afficher.</div>
+                </div>
+            </div>
+            <div class="tableBootstrap " >
+                <div class="table-responsive">
+                    <table class=" col-md-12 col-sm-3 table table-bordered" style="visibility:hidden;">
+                        <thead>
+                        <tr>
+                            {% if tabletitle is defined %}
+                                {% for row in tabletitle %}
+
+                                    {% if (row == 'Préalable') or (row == 'Finale')  %}
+                                        <th title="En cochant l'une de ces cases vous pré-remplissez les cases correspondantes dans tous les rapports que vous générez" class="col-md-1 col-sm-1 text-center" style="vertical-align: middle">{{ row }}</th>
+                                    {% else %}
+                                        <th class="col-sm-1 text-center" style="vertical-align: middle">{{ row }}</th>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    {#Bootstrap CDN#}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    {#fosjsrouting bundle#}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+
+    <script>
+
+        //--- Prepare URLs ---
+        {% set routingGroupsByTeacher =  path('data_groupsByTeacher')   %}
+        {% set routingRessourcesByGroup =  path('data_ressourcesByGroup')   %}
+        {% set routingStudentsByGroupAndRessource =  path('data_studentsByGroupAndRessource')   %}
+        {% set linkpdf =  path('app_searchPDF',{studentId:-1})   %}//default -1 mean image are not generated
+
+        var routingGroupsByTeacher = {{ routingGroupsByTeacher |json_encode|raw}}
+        var routingRessourcesByGroup = {{ routingRessourcesByGroup |json_encode|raw}}
+        var routingStudentsByGroupAndRessource = {{ routingStudentsByGroupAndRessource |json_encode|raw}}
+        var linkpdf = {{ linkpdf |json_encode|raw}}
+
+        //--- Get Default Console Values ---
+        var studentDefaultField = {{ stagiaireDefaultSelection |json_encode|raw}}
+        var groupDefaultField = {{ groupDefaultSelection |json_encode|raw}}
+        var ressourceDefaultField = {{ ressourceDefaultSelection |json_encode|raw}}
+
+
+        //--- Get TeacherId ---
+        var teacherId = {{teacherId}}
+
+        //--- Get Table Generate By The Console ---
+
+        //table head
+        {% set tabletitle = ['Prénom/Nom','Préalable','Finale','Résultat évaluation','Matrice OF','Matrice Candidat','Tout'] %}
+        var tabletitle = {{tabletitle |json_encode|raw }}
+
+        //table images
+        {% set urlimg =  asset('bundles/app/img/pdf-picture.jpg') %}
+        var srcpdfpicture = {{urlimg|json_encode|raw}}
+
+        //help checkbox message
+        var help = 'En cochant l\'une de ces cases vous pré-remplissez les cases correspondantes dans tous les rapports que vous générez'
+
+        var role = {% if role.0 is defined %}{{ role.0.name |json_encode|raw }}{% else %} 'NOTHING'{% endif %};
+        if(role != 'TEACHER'){
+            var error = 'Vous devez être enseignant pour accéder à cette interface';
+            $('#message').text(error);
+            $('.classes-menu').addClass('disabled');
+//            $('.dropdown').addClass('disabled');
+
+        }
+    </script>
+    <script src="{{asset('bundles/app/js/transformation.js')}}"></script>
+
+    {# Animation Panel Right <-> Left #}
+    <script src="{{asset('bundles/app/js/ajaxrequest.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,39 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+   #    database_host: db
+   #    database_port: 3306
+    database_name: t2kdw
+    database_user: root
+    database_password: root
+
+    from_email: contact-viascola@sejer.fr
+    database_exception_to_emails:
+        yannick.dieng@acensi.fr: 'Yannick Dieng'
+        arthur.voncken@acensi.fr: 'Arthur Voncken'
+        charles.quelennec@acensi.fr: 'Charles Quelennec'
+    other_exception_to_emails:
+        yannick.dieng@acensi.fr: 'Yannick Dieng'
+        arthur.voncken@acensi.fr: 'Arthur Voncken'
+        charles.quelennec@acensi.fr: 'Charles Quelennec'
+
+    cas_version: '2.0'
+    cas_host: cas.edumax.dev
+    cas_port: 8080
+    cas_context: /cas
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    jwt_private_key_path: "%kernel.root_dir%/var/jwt/private.pem"   # ssh private key path
+    jwt_public_key_path:  "%kernel.root_dir%/var/jwt/public.pem"    # ssh public key path
+    jwt_key_pass_phrase:  test                                      # ssh key pass phrase
+    jwt_token_ttl:        86400
+
+    # A secret key that's used to generate certain security-related tokens
+    secret:            ThisTokenIsNotSoSecretChangeIt

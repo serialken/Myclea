@@ -1,0 +1,23 @@
+# src/AppBundle/Resources/config/services.yml
+parameters:
+#    courses_cid:
+#            - 63cfb2f4-f5c2-40f0-b6b1-db64251d38c9
+#            - df926206-55ae-49f1-aa1c-05a7f09cd1e8
+#            - 4191805f-963c-4af7-ad53-6b6f6ce79a1e
+    isbn: ISBN 313 309 169 049 6
+    skillAccepted: 75
+    subdomainAccepted: 75
+    domainAccepted: 100
+    colorDomain:
+        - '#0064AD'
+        - '#0081C7'
+        - '#58589F'
+        - '#8A157E'
+        - '#F8B334'
+        - '#E5352D'
+        - '#CED8D2'
+
+services:
+    app.repository:
+        class: AppBundle\Repository\DataRepository
+        arguments: ['@database_connection','%isbn%']
